@@ -1,0 +1,15 @@
+{
+  "name": "uncex",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Uncex on Solana",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "gates": "node scripts/gates.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "26.1.0"
+  },
+  "license": "MIT"
+}

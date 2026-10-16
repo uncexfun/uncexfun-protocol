@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Uncex · Solana</title>
+<meta name="description" content="Uncex on Solana: one token position, recurring assistant sessions, no invoice. Streaming Solana board included.">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preload" href="fonts/bricolage.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/jbmono.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+<script type="application/json" id="register">/*REGISTER*/</script>
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="top" id="top">
+  <a class="brand" href="#home" aria-label="Uncex start">
+    <img src="assets/logo-96.png" srcset="assets/logo-96.png 1x, assets/logo-192.png 2x" width="20" height="32" alt="">
+    <span><b>UNCEX</b><small>on Solana</small></span>
+  </a>
+  <nav class="nav" aria-label="Sections">
+    <a href="#home" class="on" data-spy="home">Start</a>
+    <a href="#market" data-spy="market">Tape</a>
+    <a href="#how" data-spy="how">Brief</a>
+  </nav>
+  <div class="social" role="group" aria-label="Social links">
+    <span class="soc" data-record="x" data-link="x">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </span>
+    <span class="soc" data-record="github" data-link="github">
+      <svg viewBox="0 0 16 16" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
+    </span>
+  </div>
+  <div class="ca-bar" id="ca-bar" data-record="ca">
+    <span class="ca-label">Token mint</span>
+    <span class="ca-slot" data-slot="ca">
+      <span class="ca-pending">pending</span>
+    </span>
+    <span class="sr-only" id="ca-live" role="status" aria-live="polite"></span>
+  </div>
+</header>
+
+<div class="ticker" id="ticker" aria-label="Streaming Solana ticker">
+  <div class="ticker-in" id="ticker-in" aria-hidden="true">
+    <span class="tk sk"><i></i></span><span class="tk sk"><i></i></span><span class="tk sk"><i></i></span><span class="tk sk"><i></i></span><span class="tk sk"><i></i></span><span class="tk sk"><i></i></span>
+  </div>
+</div>
+
+<main id="home">
+<section class="hero" aria-labelledby="h1">
+  <div class="hero-copy">
+    <p class="pill reveal"><span class="live-dot" aria-hidden="true"></span><span>Solana · assistant access minus the invoice</span></p>
+    <h1 id="h1" class="reveal">Drop the invoice. Carry the <em>$UNCEX</em>.</h1>
+    <p class="lead reveal">A single token position opens recurring assistant sessions, cycle after cycle. No card on file. No renewal to dodge.</p>
+    <div class="cta reveal">
+      <a class="btn big" href="#market">Watch the market</a>
+      <a class="btn big ghost" href="#how">Trace the flow</a>
+    </div>
+    <div class="chips reveal" aria-label="Access terms">
+      <span class="chip" data-record="cadence"><b data-slot="label"></b><i data-slot="value"></i></span>
+      <span class="chip" data-record="min_hold"><b data-slot="label"></b><i data-slot="value"></i></span>
+      <span class="chip" data-record="models"><b data-slot="label"></b><i data-slot="value"></i></span>
+    </div>
+  </div>
+
+  <div class="hero-stage reveal" id="stage">
+    <div class="mesh" aria-hidden="true" data-depth="0.4"><i></i><i></i><i></i></div>
+    <div class="panel spot" data-depth="0.9">
+      <div class="panel-head">
+        <span class="wdots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="panel-title">Session console</span>
+        <span class="state-pill" id="mkt-pill" data-state="loading"><span class="live-dot" aria-hidden="true"></span><span data-slot="pill-text">Syncing</span></span>
+      </div>
+      <div class="panel-body">
+        <div class="ring-wrap" aria-hidden="true">
+          <svg class="ring" viewBox="0 0 200 200"><circle class="ring-a" cx="100" cy="100" r="88"/><circle class="ring-b" cx="100" cy="100" r="74"/></svg>
+          <img class="ring-logo" src="assets/logo-192.png" srcset="assets/logo-192.png 1x, assets/logo-512.png 2x" width="123" height="192" alt="" data-depth="1.6">
+        </div>
+        <div class="tiles">
+          <div class="tile spot" data-record="cadence"><small data-slot="label"></small><b data-slot="value"></b></div>
+          <div class="tile spot" data-record="min_hold"><small data-slot="label"></small><b data-slot="value"></b></div>
+          <div class="tile spot" data-record="fee_route"><small data-slot="label"></small><b data-slot="value"></b></div>
+          <div class="tile spot" data-record="plan_price"><small data-slot="label"></small><b data-slot="value"></b></div>
+        </div>
+      </div>
+    </div>
+    <span class="glyph g1" aria-hidden="true" data-depth="1.8">@</span>
+    <span class="glyph g2" aria-hidden="true" data-depth="2.4">#</span>
+    <span class="glyph g3" aria-hidden="true" data-depth="1.2">$</span>
+  </div>
+  <canvas class="waves" id="waves" aria-hidden="true"></canvas>
+</section>
+
+<section class="numbers" aria-label="Network figures">
+  <div class="spot reveal" data-record="sessions"><small data-slot="label"></small><b data-slot="value"></b></div>
+  <div class="spot reveal" data-record="wallets"><small data-slot="label"></small><b data-slot="value"></b></div>
+  <div class="spot reveal" data-record="cadence"><small data-slot="label"></small><b data-slot="value"></b></div>
+  <div class="spot reveal" data-record="models"><small data-slot="label"></small><b data-slot="value"></b></div>
+</section>
+
+<section class="market" id="market" aria-labelledby="h-market" data-record="market">
+  <div class="sec-head reveal">
+    <h2 id="h-market">Solana tape</h2>
+    <p>The busiest assets on Solana by 24h turnover, pulled from a public feed.</p>
+  </div>
+  <div class="mkt-bar reveal">
+    <div class="tabs" role="tablist" aria-label="Sort the board">
+      <button class="tab on" role="tab" aria-selected="true" data-sort="vol" type="button">Turnover</button>
+      <button class="tab" role="tab" aria-selected="false" data-sort="chg" type="button">Movers</button>
+      <button class="tab" role="tab" aria-selected="false" data-sort="liq" type="button">Depth</button>
+    </div>
+    <p class="mkt-note" id="mkt-note" role="status" aria-live="polite"></p>
+  </div>
+  <div class="board card reveal" id="board">
+    <div class="mrow mhead" aria-hidden="true">
+      <span>#</span><span>Asset</span><span class="r">Price</span><span class="r">24h</span><span class="r">Turnover</span><span class="r">Liquidity</span><span class="r">Clip</span>
+    </div>
+    <ol class="mlist" id="mlist" aria-busy="true"></ol>
+  </div>
+</section>
+
+<section class="how" id="how" aria-labelledby="h-how">
+  <div class="sec-head reveal"><h2 id="h-how">Three moves, then repeat</h2></div>
+  <ol class="steps">
+    <li class="spot reveal">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M8.5 10.5h5a2 2 0 0 1 0 4h-4"/></svg>
+      <h3>Take a position</h3>
+      <p>Acquire the token at whichever venue the mint slot above names. That slot remains dark until the mint is confirmed.</p>
+    </li>
+    <li class="spot reveal">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg>
+      <h3>Return each cycle</h3>
+      <p>Sessions reopen on a rhythm, so access refreshes automatically and there is no renewal step for you.</p>
+    </li>
+    <li class="spot reveal">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M8 9h8M8 13h5"/></svg>
+      <h3>Reach an assistant</h3>
+      <p>The roster of assistants is still being confirmed, so its tile reads pending until it is stated.</p>
+    </li>
+  </ol>
+</section>
+
+<section class="desk" aria-labelledby="h-desk">
+  <div class="desk-card card spot reveal">
+    <div>
+      <p class="tag">Social desk</p>
+      <h2 id="h-desk">Voices from our timeline</h2>
+      <p class="desk-copy">Responses posted from this project's account will land here once that account is stated. Until then the corner icon remains dark.</p>
+    </div>
+    <div class="desk-slot" data-record="x"><small data-slot="label"></small><b data-slot="value"></b></div>
+  </div>
+</section>
+
+<section class="versus" aria-labelledby="h-vs">
+  <div class="sec-head reveal"><h2 id="h-vs">Rent it, or occupy the seat</h2></div>
+  <div class="vs-grid">
+    <article class="card spot reveal">
+      <p class="tag dim">Recurring plan</p>
+      <div class="vs-amount" data-record="plan_price"><small data-slot="label"></small><b data-slot="value"></b></div>
+      <ul class="ticks">
+        <li>A charge that returns on schedule</li>
+        <li>One vendor, one roster</li>
+        <li>Lapse the payment and access ends</li>
+      </ul>
+    </article>
+    <div class="vs-mid" aria-hidden="true">or</div>
+    <article class="card spot reveal hot">
+      <p class="tag">Uncex position</p>
+      <div class="vs-amount" data-record="cadence"><small data-slot="label"></small><b data-slot="value"></b></div>
+      <ul class="ticks">
+        <li>Sessions reopen on a steady cycle</li>
+        <li>Roster still being confirmed</li>
+        <li>The token remains with you</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section class="calc" id="calc" aria-labelledby="h-calc">
+  <div class="calc-left reveal">
+    <h2 id="h-calc">Weigh your seat</h2>
+    <p>Drag to test a position. Output tiles wake once rates are stated.</p>
+  </div>
+  <div class="card calc-card spot reveal">
+    <label class="slider" for="bag">
+      <span>Position weight</span>
+      <input id="bag" type="range" min="0" max="100" value="30" step="1" aria-describedby="bag-out">
+      <b id="bag-out">0.00% of supply</b>
+    </label>
+    <div class="outs">
+      <div class="out" data-record="sessions"><small data-slot="label"></small><b data-slot="value"></b></div>
+      <div class="out" data-record="plan_price"><small data-slot="label"></small><b data-slot="value"></b></div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq" aria-labelledby="h-faq">
+  <h2 id="h-faq" class="reveal">Straight talk</h2>
+  <details class="reveal"><summary>What powers the sessions?</summary><p>That mechanism is not stated yet, so it is held as unconfirmed and shown as pending inside each tile.</p></details>
+  <details class="reveal"><summary>Which assistants are included?</summary><p>The roster is pending. It appears the moment it is stated.</p></details>
+  <details class="reveal"><summary>Is a lockup involved?</summary><p>Nothing about lockups has been stated, so this page makes no claim either way.</p></details>
+  <details class="reveal"><summary>What position unlocks access?</summary><p>The threshold is pending. The weight control is only a sandbox at this stage.</p></details>
+  <details class="reveal"><summary>Will the tape react to a mint?</summary><p>No. The board reads its public feed independently and runs whether or not a mint is stated.</p></details>
+  <details class="reveal"><summary>Is this advice?</summary><p>No. The board is a running readout and nothing on this page promises a return.</p></details>
+</section>
+
+<section class="close" aria-labelledby="h-close">
+  <div class="close-card card spot reveal">
+    <h2 id="h-close">End the invoice. Stay positioned.</h2>
+    <div class="cta">
+      <a class="btn big" href="#market">Revisit the tape</a>
+      <a class="btn big ghost" href="#top">Jump to top</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <a class="brand" href="#home" aria-label="Uncex start">
+    <img src="assets/logo-96.png" width="20" height="32" alt="">
+    <span><b>UNCEX</b><small>on Solana</small></span>
+  </a>
+  <p>Tape figures arrive via a public feed and carry no advice. Nothing here guarantees a return.</p>
+  <nav class="foot-links" aria-label="Footer">
+    <a href="#home">Start</a><a href="#market">Tape</a><a href="#how">Brief</a>
+  </nav>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js" defer></script>
+</body>
+</html>

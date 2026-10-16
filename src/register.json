@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "records": {
+    "ca": {
+      "label": "Token mint",
+      "kind": "address",
+      "state": "absent",
+      "source": null,
+      "checked": "2026-10-16"
+    },
+    "x": {
+      "label": "X",
+      "kind": "url",
+      "host": "x.com",
+      "state": "absent",
+      "source": null,
+      "checked": "2026-10-16"
+    },
+    "github": {
+      "label": "GitHub",
+      "kind": "url",
+      "host": "github.com",
+      "state": "absent",
+      "source": null,
+      "checked": "2026-10-16"
+    },
+    "market": {
+      "label": "Market feed",
+      "kind": "feed",
+      "state": "stated",
+      "source": "client statement",
+      "boosts": "https://api.dexscreener.com/token-boosts/top/v1",
+      "pairs": "https://api.dexscreener.com/tokens/v1/solana/",
+      "checked": "2026-10-16"
+    },
+    "chain": {
+      "label": "Chain",
+      "kind": "chain",
+      "state": "stated",
+      "source": "client statement",
+      "name": "Solana",
+      "rpc": "https://solana-rpc.publicnode.com",
+      "scope": "batch-level",
+      "checked": "2026-10-16"
+    },
+    "cadence": {
+      "label": "Session cycle",
+      "kind": "fact",
+      "state": "stated",
+      "source": "client brand slides",
+      "value": "600-second",
+      "checked": "2026-10-16"
+    },
+    "min_hold": {
+      "label": "Entry threshold",
+      "kind": "fact",
+      "state": "absent",
+      "source": null,
+      "checked": "2026-10-16"
+    },
+    "models": {
+      "label": "Assistant roster",
+      "kind": "fact",
+      "state": "absent",
+      "source": null,
+      "checked": "2026-10-16"
+    },
+    "sessions": {
+      "label": "Sessions served",
+      "kind": "fact",
+      "state": "absent",
+      "source": null,
+      "checked": "2026-10-16"
+    },
+    "wallets": {
+      "label": "Seats active",
+      "kind": "fact",
+      "state": "absent",
+      "source": null,
+      "checked": "2026-10-16"
+    },
+    "fee_route": {
+      "label": "Revenue routing",
+      "kind": "fact",
+      "state": "unconfirmed",
+      "source": null,
+      "checked": "2026-10-16"
+    },
+    "plan_price": {
+      "label": "Plan price",
+      "kind": "fact",
+      "state": "absent",
+      "source": null,
+      "checked": "2026-10-16"
+    }
+  }
+}

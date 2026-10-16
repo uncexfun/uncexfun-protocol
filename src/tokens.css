@@ -1,0 +1,71 @@
+/*
+  TOKENS — the only file in the project allowed to hold colour literals.
+  Provenance: every value is a real pixel read from the supplied assets (no invented hex).
+    Logo (brand/LOGO UNCEX PNG...png, RGBA colortype 6, 2000x2000):
+      k-means (k=6, seed 7, 40 iterations) over the opaque pixels, each centroid snapped to the
+      nearest real pixel coordinate. Coordinates are x,y in the 2000px source.
+      --bone  #E4E6DC  (811,559)  share 34.5%   light tile body
+      --jade  #367254  (748,698)  share 26.0%   mid green tile
+      --deep  #104C30  (773,675)  share 21.8%   dark green tile
+      --mist  #D3D8CD  (734,581)  share  8.3%   tile edge light
+      --sage  #AABAAB  (874,577)  share  4.8%   tile bevel
+      --moss  #73937F  (821,703)  share  4.6%   tile highlight on green
+    Logo background plate (brand/LOGO UNCEX PNG.png), real pixel (100,100):
+      --ink   #0D0C0A  (100,100)
+    Brand slide (reference/UNCEX 1.jpg.jpeg, 1600x900):
+      --void  #030706  (600,100)  slide background
+      --mint  #38F6B6  (301,263)  headline green, median of saturated headline pixels
+      --snow  #F7FBFA  (565,447)  body copy white, pixel nearest the median of bright body pixels
+  Everything else in the stylesheets is a var() or a color-mix() of these ten.
+*/
+:root {
+  --bone: #E4E6DC;
+  --jade: #367254;
+  --deep: #104C30;
+  --mist: #D3D8CD;
+  --sage: #AABAAB;
+  --moss: #73937F;
+  --ink: #0D0C0A;
+  --void: #030706;
+  --mint: #38F6B6;
+  --snow: #F7FBFA;
+
+  /* roles */
+  --bg: var(--void);
+  --bg2: color-mix(in srgb, var(--deep) 16%, var(--void));
+  --panel: color-mix(in srgb, var(--deep) 10%, var(--ink));
+  --panel2: color-mix(in srgb, var(--deep) 26%, var(--ink));
+  --well: var(--ink);
+  --text: var(--snow);
+  --muted: color-mix(in srgb, var(--sage) 82%, var(--ink));
+  --line: color-mix(in srgb, var(--sage) 70%, var(--ink));
+  --soft: color-mix(in srgb, var(--moss) 28%, var(--ink));
+  --accent: var(--mint);
+  --accent-fill: var(--jade);
+  --accent-deep: var(--deep);
+  --on-accent: var(--ink);
+  --shade: var(--deep);
+  --shade-hi: var(--jade);
+  --up: var(--mint);
+  --down: var(--bone);
+  --glow: color-mix(in srgb, var(--mint) 38%, transparent);
+
+  /* measured off the reference (dark theme): radii, borders, offsets, easing */
+  --r: 6px;
+  --r-btn: 4px;
+  --r-sm: 4px;
+  --r-chip: 3px;
+  --bw: 2px;
+  --bw-frame: 3px;
+  --shadow: 4px 4px 0 var(--shade);
+  --shadow-sm: 2px 2px 0 var(--shade);
+  --shadow-btn: 3px 3px 0 var(--shade);
+  --shadow-lg: 2px 2px 0 var(--shade-hi), 4px 4px 0 var(--ink), 6px 6px 0 var(--shade), 8px 8px 0 var(--ink), 10px 10px 0 var(--shade);
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  --slam: cubic-bezier(.2, 2, .4, 1);
+  --tap: 44px;
+  --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --font: 'Inter', system-ui, sans-serif;
+  --head: 'Bricolage Grotesque', 'Inter', system-ui, sans-serif;
+  color-scheme: dark;
+}
